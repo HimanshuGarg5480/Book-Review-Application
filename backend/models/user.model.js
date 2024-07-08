@@ -15,6 +15,28 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    refreshToken: {
+      type: String,
+    },
+    location: {
+      type: String,
+      default: "",
+    },
+    age: {
+      type: Number,
+      min: 0,
+    },
+    work: {
+      type: String,
+      default: "",
+    },
+    dob: {
+      type: Date,
+    },
+    description: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );
