@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { RxCross2 } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
 
 const OtpForm = ({ email, setOtpFormShow, otpFormShow }) => {
   const [otpBlock1, setOtpBlock1] = useState("");
   const [otpBlock2, setOtpBlock2] = useState("");
   const [otpBlock3, setOtpBlock3] = useState("");
   const [otpBlock4, setOtpBlock4] = useState("");
+
+  const navigate=useNavigate();
 
   const handleVerifyOTP = async (e) => {
     e.preventDefault();
@@ -20,6 +23,7 @@ const OtpForm = ({ email, setOtpFormShow, otpFormShow }) => {
 
       console.log(response);
       localStorage.setItem("accessToken", response.data.accessToken);
+      navigate('/completeProfile')
     } catch (error) {
       console.log(error);
     }
