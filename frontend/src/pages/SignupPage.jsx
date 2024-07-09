@@ -1,10 +1,31 @@
 import React, { useState } from "react";
 import book from "../assets/book.svg";
+import axios from "axios";
+import OtpForm from "../components/OtpForm";
+import {Link} from "react-router-dom"
 
 const SignupPage = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [otpFormShow,setOtpFormShow]=useState(false);
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/auth/signup",
+        { email, username, password }
+      );
+      if(response.data.email){
+        setOtpFormShow(true);
+      }
+      console.log(response);
+      if(response){}
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className="lg:flex">
@@ -76,7 +97,7 @@ const SignupPage = () => {
                 </div>
                 <div className="mt-10">
                   <button
-                    onClick={(e)=>{e.preventDefault(); console.log({email,username,password})}}
+                    onClick={handleRegister}
                     className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
                                 font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
                                 shadow-lg"
@@ -87,9 +108,9 @@ const SignupPage = () => {
               </form>
               <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
                 have an account already?{" "}
-                <a className="cursor-pointer text-indigo-600 hover:text-indigo-800">
+                <Link to="/login" className="cursor-pointer text-indigo-600 hover:text-indigo-800">
                   Log in
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -102,6 +123,10 @@ const SignupPage = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className={`${otpFormShow?"":"hidden"}`}>
+        <OtpForm email={email} setOtpFormShow={setOtpFormShow} otpFormShow={otpFormShow}/>
       </div>
     </>
   );

@@ -123,6 +123,43 @@ const VerifyOtp = async (req, res) => {
   }
 };
 
+const resendOtp = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ error: 'User not found' });
+    }
+    const otp = generateOTP();
+    const otpExpires = Date.now() + 3600000; // 1 hour
+
+    // Update the user's OTP and expiration
+    user.otp = otp;
+    user.otpExpires = otpExpires;
+    await user.save();
+
+    const mailOptions = {
+      from: "workpalakgarg296@gmail.com",
+      to: email,
+      subject: "Verify your account",
+      text: `Your OTP is: ${otp}`,
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return res.status(500).json({ error: error });
+      }
+      res.status(201).json({
+        message: "otp sent. Check your email for the OTP.",
+        userId: user._id,
+        email,
+      });
+      
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -154,4 +191,4 @@ const loginUser = async (req, res) => {
   }
 };
 
-export { loginUser, signupUser, VerifyOtp };
+export { loginUser, signupUser, VerifyOtp,resendOtp};
