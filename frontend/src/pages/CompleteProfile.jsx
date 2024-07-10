@@ -31,8 +31,7 @@ const CompleteProfile = () => {
         }
       });
       console.log(response);
-      // Redirect to the dashboard or another page
-      // window.location.href = '/dashboard';
+      navigate('/userDashboard')
     } catch (error) {
       console.log(error, 'Error completing profile');
       navigate('/login');

@@ -1,5 +1,6 @@
 // bookController.js
 import Book from "../models/Book.model.js";
+import Review from "../models/Review.model.js";
 // Add a new book
 export const addBook = async (req, res) => {
   const { title, author, genre, description } = req.body;
@@ -39,23 +40,25 @@ export const getBookReviews = async (req, res) => {
     }
    
     const reviews = await Review.find({ bookId: id });
-    res.status(200).json(reviews);
+    res.status(200).json({meessage:"reviews fetched successfully!",reviews:reviews});
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch reviews" });
   }
 };
 
 export const addBookReview = async (req, res) => {
-  const { rating, comment, bookId } = req.body;
-  console.log("ddd",bookId );
+  const { rating, comment } = req.body;
+  const {id} = req.params;
+  console.log("ddd",id );
   try {
-    const book = await Book.findById(bookId);
-   console.log("book",book );
+    console.log("hello")
+    const book = await Book.findById(id);
+    console.log("hello")
     if (!book) {
       return res.status(404).json({ error: "Book not found" });
     }
     const newReview = {
-      bookId,
+      bookId:id,
       rating,
       comment,
       createdAt: new Date()

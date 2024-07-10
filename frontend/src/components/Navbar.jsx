@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const [menuOpen,setMenuOpen]=useState(false);
@@ -16,7 +17,7 @@ const Navbar = () => {
           bg-white
         "
     >
-      <div classNameName="text-lg font-semibold text-blue-900">
+      <div className="text-lg font-semibold text-blue-900">
         Book Review Assignment
       </div>
 
@@ -46,21 +47,21 @@ const Navbar = () => {
               md:justify-between 
               md:pt-0"
         >
-          <li>
+          <Link to="/userDashboard">
             <span className="md:p-4 py-2 block hover:text-purple-400" href="#">
               Dashboard
             </span>
-          </li>
-          <li>
+          </Link>
+          <Link to="/addNewBook">
             <span className="md:p-4 py-2 block hover:text-purple-400" href="#">
               Add new Book
             </span>
-          </li>
-          <li>
+          </Link>
+          <Link to="/bookListing">
             <span className="md:p-4 py-2 block hover:text-purple-400" href="#">
               Book Listing
             </span>
-          </li>
+          </Link>
         </ul>
       </div>
     </nav>

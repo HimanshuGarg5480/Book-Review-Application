@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import Layout from "../components/Layout";
 import PopUpProductDetails from "../components/PopUpProductDetails";
+import PopUpReviews from "../components/PopUpReviews";
 
 const BookListingPage = () => {
   const navigate = useNavigate();
   const [showPopUp, setShowPopUp] = useState(false);
+  const [showReviewPopUp, setReviewPopUp] = useState(false);
   const [productList, setProductList] = useState([]);
   const [productDetails, setProductDeltails] = useState({});
   const handleGetProductList = async () => {
@@ -53,6 +55,13 @@ const BookListingPage = () => {
             setShowPopUp={setShowPopUp}
           />
         )}
+        {showReviewPopUp && (
+          <PopUpReviews
+            product={productDetails}
+            showPopUp={showReviewPopUp}
+            setShowPopUp={setReviewPopUp}
+          />
+        )}
         <div className="">
           <div className="text-lg sm:text-3xl font-bold text-blue-950 text-center">
             Product Listing
@@ -64,6 +73,8 @@ const BookListingPage = () => {
               product={product}
               showPopUp={showPopUp}
               setShowPopUp={setShowPopUp}
+              showReviewPopUp={showReviewPopUp}
+              setReviewPopUp={setReviewPopUp}
               key={product._id}
               handleProductClick={handleProductClick}
             />

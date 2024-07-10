@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProductCard = ({ product,showPopUp,setShowPopUp,handleProductClick}) => {
+const ProductCard = ({ product,showPopUp,setShowPopUp,reviewPopUp,setReviewPopUp,handleProductClick}) => {
   return (
     <div onClick={()=>{setShowPopUp(!showPopUp); handleProductClick(product)}} className="w-72 bg-white border-gray-950 border-2 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
       <img
@@ -21,6 +21,7 @@ const ProductCard = ({ product,showPopUp,setShowPopUp,handleProductClick}) => {
           </p>
         </div>
         <button className="bg-blue-400 hover:bg-blue-500 text-slate-50 w-full rounded-md py-2">add review</button>
+        <button onClick={()=>{setReviewPopUp(!reviewPopUp); handleProductClick(product)}} className="bg-blue-400 hover:bg-blue-500 text-slate-50 w-full rounded-md py-2 mt-1">show review</button>
       </div>
     </div>
   );
