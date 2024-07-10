@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import CompleteProfile from "./pages/CompleteProfile";
 import UserDashboard from "./pages/UserDashboard";
+import AddNewBook from "./pages/AddNewBook";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/completeProfile" element={<CompleteProfile />}></Route>
 
           <Route path="/userDashboard" element={<UserDashboard />}></Route>
+          <Route path="/addNewBook" element={<AddNewBook />}></Route>
           {/* <Route path="/" element={<Home />}></Route>
         <Route path="/cart" element={<CartPage />}></Route> */}
         </Routes>
