@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 //location, age, work, dob, description
 const CompleteProfile = () => {
   const [location, setLocation] = useState("");
@@ -7,6 +8,8 @@ const CompleteProfile = () => {
   const [work, setWork] = useState("");
   const [dob, setDob] = useState("");
   const [description, setDescription] = useState("");
+
+  const navigate=useNavigate();
 
   const handleSubmit = async(e)=>{
     e.preventDefault();
@@ -32,6 +35,7 @@ const CompleteProfile = () => {
       // window.location.href = '/dashboard';
     } catch (error) {
       console.log(error, 'Error completing profile');
+      navigate('/login');
     }
   }
   return (

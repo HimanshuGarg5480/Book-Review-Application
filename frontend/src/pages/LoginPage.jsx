@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import book from "../assets/book.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate=useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -12,8 +15,9 @@ const LoginPage = () => {
       const data = await axios.post("http://localhost:8000/api/auth/login", { email, password });
       localStorage.setItem("accessToken", data.data.accessToken);
       console.log("Login successful!",data.data);
+      navigate('/userDashboard');
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   };
 
