@@ -22,24 +22,9 @@ export const addBook = async (req, res) => {
 export const getAllBooks = async (req, res) => {
   try {
     const books = await Book.find();
-    res.status(200).json(books);
+    res.status(200).json({message:"books fetched successfully",books});
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch books" });
-  }
-};
-
-// Get book details by ID
-export const getBookById = async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    const book = await Book.findById(id);
-    if (!book) {
-      return res.status(404).json({ error: "Book not found" });
-    }
-    res.status(200).json(book);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch book details" });
   }
 };
 

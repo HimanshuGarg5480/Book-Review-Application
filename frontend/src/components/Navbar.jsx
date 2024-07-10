@@ -4,7 +4,7 @@ const Navbar = () => {
     const [menuOpen,setMenuOpen]=useState(false);
   return (
     <nav
-      class="
+      className="
           flex flex-wrap
           items-center
           justify-between
@@ -16,7 +16,7 @@ const Navbar = () => {
           bg-white
         "
     >
-      <div className="text-lg font-semibold text-blue-900">
+      <div classNameName="text-lg font-semibold text-blue-900">
         Book Review Assignment
       </div>
 
@@ -24,7 +24,7 @@ const Navbar = () => {
         onClick={()=>{setMenuOpen(!menuOpen)}}
         xmlns="http://www.w3.org/2000/svg"
         id="menu-button"
-        class="h-6 w-6 cursor-pointer md:hidden block"
+        className="h-6 w-6 cursor-pointer md:hidden block"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -37,9 +37,9 @@ const Navbar = () => {
         />
       </svg>
 
-      <div class={`${menuOpen?"":"hidden"} w-full md:flex md:items-center md:w-auto`} id="menu">
+      <div className={`${menuOpen?"":"hidden"} w-full md:flex md:items-center md:w-auto`} id="menu">
         <ul
-          class="
+          className="
               pt-4
               text-base text-gray-700
               md:flex
@@ -47,17 +47,17 @@ const Navbar = () => {
               md:pt-0"
         >
           <li>
-            <span class="md:p-4 py-2 block hover:text-purple-400" href="#">
+            <span className="md:p-4 py-2 block hover:text-purple-400" href="#">
               Dashboard
             </span>
           </li>
           <li>
-            <span class="md:p-4 py-2 block hover:text-purple-400" href="#">
+            <span className="md:p-4 py-2 block hover:text-purple-400" href="#">
               Add new Book
             </span>
           </li>
           <li>
-            <span class="md:p-4 py-2 block hover:text-purple-400" href="#">
+            <span className="md:p-4 py-2 block hover:text-purple-400" href="#">
               Book Listing
             </span>
           </li>
